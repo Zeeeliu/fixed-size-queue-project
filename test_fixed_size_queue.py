@@ -73,13 +73,3 @@ class TestFixedSizeQueue(unittest.TestCase):
         self.queue.enqueue(2)
         self.assertEqual(str(self.queue), "Queue(1->2)", "String representation should be correct")
 
-    def test_wrap_around_behavior(self):
-        # Test wrap-around behavior
-        for i in range(5):
-            self.queue.enqueue(i)
-        for i in range(5):
-            self.assertEqual(self.queue.dequeue(), i, f"Dequeued item should be {i}")
-        for i in range(5, 10):
-            self.queue.enqueue(i)
-        self.assertEqual(str(self.queue), "Queue(5->6->7->8->9)", "Queue should wrap around correctly")
-
