@@ -1,16 +1,3 @@
-"""
-Fixed Size Queue Implementation
-
-An implementation of a fixed-size queue using circular array with two pointers.
-
-Author: Ziye Liu
-
-Features:
-- Fixed size, pre-allocated memory
-- FIFO behaviors
-- Thread-safe
-"""
-
 import threading
 
 class FixedSizeQueue:
