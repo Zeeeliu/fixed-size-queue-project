@@ -76,7 +76,7 @@ class FixedSizeQueue:
                 raise IndexError("Failed to deque: Queue is empty")
 
             else:
-                dequeued_item = self.queue[self.head]           # use peek to find the element at the head of the queue
+                dequeued_item = self.peek()                     # use peek to find the element at the head of the queue
                 self.queue[self.head] = None                    # clear the element at the head of the queue
                 self.head = (self.head + 1) % self.max_size     # move the head pointer to the next position
                 self.size -= 1                                  # decrease the size of the queue by 1
