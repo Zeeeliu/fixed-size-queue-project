@@ -63,8 +63,7 @@ class TestFixedSizeQueue(unittest.TestCase):
 
     def test_dequeue_empty(self):
         # Test dequeueing from an empty queue
-        with self.assertRaises(IndexError, msg="11"
-                                               "Dequeueing from an empty queue should raise IndexError"):
+        with self.assertRaises(IndexError, msg="Dequeueing from an empty queue should raise IndexError"):
             self.queue.dequeue()
 
     def test_peek(self):
