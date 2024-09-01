@@ -46,10 +46,10 @@ class FixedSizeQueue:
             if self.is_full():
                 raise OverflowError("Enqueue failed: Queue is full")
 
-            else:
-                self.queue[self.tail] = item    # place the new item at the end of the queue
-                self.tail = (self.tail + 1) % self.max_size  # update tail to the next position, wrap around if needed
-                self.size += 1                  # increment the size counter to reflect the addition of the new item
+
+            self.queue[self.tail] = item    # place the new item at the end of the queue
+            self.tail = (self.tail + 1) % self.max_size  # update tail to the next position, wrap around if needed
+            self.size += 1                  # increment the size counter to reflect the addition of the new item
 
             print(f"Enqueued {item} at the queue")
 
@@ -62,8 +62,8 @@ class FixedSizeQueue:
         if self.is_empty():
             return None
 
-        else:
-            return self.queue[self.head]    # return the item that is at the front of the queue
+
+        return self.queue[self.head]    # return the item that is at the front of the queue
 
     def dequeue(self):
         """
@@ -75,13 +75,12 @@ class FixedSizeQueue:
             if self.is_empty():
                 raise IndexError("Failed to deque: Queue is empty")
 
-            else:
-                dequeued_item = self.peek()                     # use peek to find the element at the head of the queue
-                self.queue[self.head] = None                    # clear the element at the head of the queue
-                self.head = (self.head + 1) % self.max_size     # move the head pointer to the next position
-                self.size -= 1                                  # decrease the size of the queue by 1
-                print(f"Dequeued successfully")
-                return dequeued_item
+            dequeued_item = self.peek()                     # use peek to find the element at the head of the queue
+            self.queue[self.head] = None                    # clear the element at the head of the queue
+            self.head = (self.head + 1) % self.max_size     # move the head pointer to the next position
+            self.size -= 1                                  # decrease the size of the queue by 1
+            print(f"Dequeued successfully")
+            return dequeued_item
 
     def __len__(self) -> int:
         """

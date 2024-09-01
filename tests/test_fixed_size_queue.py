@@ -1,5 +1,5 @@
 import unittest
-from fixed_size_queue import FixedSizeQueue
+from src.fixed_size_queue import FixedSizeQueue
 
 
 class TestFixedSizeQueue(unittest.TestCase):
