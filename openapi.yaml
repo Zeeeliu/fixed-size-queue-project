@@ -1,0 +1,145 @@
+openapi: 3.0.0
+info:
+  title: Fixed Size Queue API
+  description: API for interacting with a Fixed Size Queue
+  version: 1.0.0
+  contact:
+    name: Ziye Liu
+
+servers:
+  - url: http://localhost:5001
+    description: Local development server
+
+paths:
+  /queue:
+    get:
+      summary: Get queue state
+      description: Retrieves the current state of the queue
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  queue:
+                    type: string
+                    example: "Queue(item1->item2->item3)"
+                  size:
+                    type: integer
+                    example: 3
+
+  /queue/enqueue:
+    post:
+      summary: Enqueue item
+      description: Adds an item to the back of the queue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item:
+                  type: string
+              required:
+                - item
+      responses:
+        '201':
+          description: Item successfully enqueued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Enqueued example_item"
+                  queue:
+                    type: string
+                    example: "Queue(item1->item2->item3->example_item)"
+        '400':
+          description: Queue is full
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Enqueue failed: Queue is full"
+
+  /queue/dequeue:
+    delete:
+      summary: Dequeue item
+      description: Removes and returns the front item from the queue
+      responses:
+        '200':
+          description: Item successfully dequeued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dequeued:
+                    type: string
+                    example: "item1"
+                  queue:
+                    type: string
+                    example: "Queue(item2->item3->item4)"
+        '400':
+          description: Queue is empty
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Failed to deque: Queue is empty"
+
+  /queue/peek:
+    get:
+      summary: Peek queue
+      description: Views the front item of the queue without removing it
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  front:
+                    type: string
+                    example: "item1"
+        '400':
+          description: Queue is empty
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Queue is empty"
+
+  /queue/clear:
+    post:
+      summary: Clear queue
+      description: Removes all items from the queue
+      responses:
+        '200':
+          description: Queue successfully cleared
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Queue cleared"
+
+components:
+  schemas: {}
