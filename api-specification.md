@@ -1,8 +1,5 @@
 # Fixed Size Queue API Specification
 
-## Author
-Ziye Liu
-
 September 1, 2024
 
 
@@ -21,7 +18,7 @@ This API does not require authentication.
 
 ## Endpoints
 
-The API provides four main endpoints for interacting with the Fixed Size Queue:
+The API provides five main endpoints for interacting with the Fixed Size Queue:
 
 1. **GET /queue**: Print the current state of the queue along with its size.
 2. **POST /queue/enqueue**: Adds an item to the back of the queue.
@@ -144,19 +141,7 @@ In case of errors, the API will return an appropriate HTTP status code and a JSO
 }
 ```
 
-
-
-## Error Responses
-
-In case of errors, the API will return an appropriate HTTP status code and a JSON object with an error message.
-
-```json
-{
-  "error": "Error message describing the issue"
-}
-```
-
-Common error status codes:
+Error status codes:
 
 - 400 Bad Request: Invalid input or operation (e.g., enqueueing to a full queue or dequeueing from an empty queue)
 
